@@ -1,0 +1,4 @@
+Поточна директорія: C:\LNU\4-курс\python\MV_PY_Lab_7\task-2
+Отримано список шляхів до файлів: ['C:\\LNU\\4-курс\\python\\MV_PY_Lab_7\\task-2\\file1.txt', 'C:\\LNU\\4-курс\\python\\MV_PY_Lab_7\\task-2\\file2.txt', 'C:\\LNU\\4-курс\\python\\MV_PY_Lab_7\\task-2\\file3.txt', 'C:\\LNU\\4-курс\\python\\MV_PY_Lab_7\\task-2\\file4.txt', 'C:\\LNU\\4-курс\\python\\MV_PY_Lab_7\\task-2\\file5.txt', 'C:\\LNU\\4-курс\\python\\MV_PY_Lab_7\\task-2\\протоколо-виконання-задачі-2.txt']
+Створено шлях до виконуваного файлу VS Code: C:/Users\ElitexAdmin\AppData\Local\Programs\Microsoft VS Code\Code.exe    
+Запускаємо виконуваний файл VS Code

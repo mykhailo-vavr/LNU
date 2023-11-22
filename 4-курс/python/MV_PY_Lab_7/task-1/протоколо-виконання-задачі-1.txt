@@ -1,0 +1,5 @@
+Поточна директорія: C:\LNU\4-курс\python\MV_PY_Lab_7\task-1
+Отримано шлях до .docx файлу: C:\LNU\4-курс\python\MV_PY_Lab_7\task-1\file.docx
+Запускаємо .docx файл
+Отримано шлях до .jpeg файлу: C:\LNU\4-курс\python\MV_PY_Lab_7\task-1\image.jpeg
+Запускаємо .jpeg файл
