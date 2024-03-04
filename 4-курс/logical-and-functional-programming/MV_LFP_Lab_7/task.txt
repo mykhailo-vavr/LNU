@@ -1,0 +1,147 @@
+; знаходить мінімальне значення у списку
+(DEFUN MINV (LIST)
+  (if (endp (rest LIST)) ; endp - перевіряє чи список порожній
+      (first LIST)
+      (min (first LIST) (MINV (rest LIST)))))
+
+; знаходить максимальне значення у списку
+(DEFUN MAXV (LIST)
+  (if (endp (rest LIST))
+      (first LIST)
+      (max (first LIST) (MAXV (rest LIST)))))
+
+; перевіряє, чи значення аргументів впорядковані в зростаючому порядку
+(DEFUN INCR (LIST)
+  (if (endp (rest LIST))
+      t
+      (and (<= (first LIST) (second LIST)) (INCR (rest LIST)))))
+
+; перевіряє, чи значення аргументів впорядковані в спадаючому порядку
+(DEFUN DECR (LIST)
+  (if (endp (rest LIST))
+      t
+      (and (>= (first LIST) (second LIST)) (DECR (rest LIST)))))
+
+(print "Min value (1 3 4 7 8 9):")
+(print (MINV '(1 3 4 7 8 9)))
+
+(print "Max value (2 4 4 7 8 9):")
+(print (MAXV '(2 4 4 7 8 9)))
+
+(print "Is increasment (2 4 4 7 8 6):")
+(print (INCR '(2 4 4 7 8 6)))
+(print "Is increasment (2 4 4 7 8 9):")
+(print (INCR '(2 4 4 7 8 9)))
+
+(print "Is decreasment (3 5 7 7 8):")
+(print (DECR '(3 5 7 7 8)))
+(print "Is decreasment (8 8 4 2 1):")
+(print (DECR '(8 8 4 2 1)))
+
+
+
+; рахує суму елементів ліста
+(DEFUN SUM-OF-LISTS (LIST)
+  (if (endp LIST)
+      0
+      (if (listp (first LIST)) ; listp перевіряє чи є елемент списком 
+          (+ (SUM-OF-LISTS (first LIST)) (SUM-OF-LISTS (rest LIST)))
+          (+ (first LIST) (SUM-OF-LISTS (rest LIST))))))
+
+
+(print "Sum of elements (1 (3 4) 7 8 9):")
+(print (SUM-OF-LISTS '(1 (3 4) 7 8 9)))
+
+; рахує кількість елементів в списку
+(DEFUN COUNT-ELEMENTS (LIST)
+  (if (endp LIST)
+      0
+      (if (listp (first LIST)) ; listp перевіряє чи є елемент списком 
+          (+ (COUNT-ELEMENTS (first LIST)) (COUNT-ELEMENTS (rest LIST)))
+          (+ 1 (COUNT-ELEMENTS (rest LIST))))))
+
+(print "Count of elements (1 3 (4 7) 8 9):")
+(print (COUNT-ELEMENTS '(1 3 (4 7) 8 9)))
+
+
+; робить лінеризацію списку з підсписками 
+(DEFUN LINEARIZE (LIST)
+  (IF (ENDP LIST)
+      nil
+      (IF (ATOM (FIRST LIST)) ; atom перевіряє чи це один елемент
+          (CONS (FIRST LIST) (LINEARIZE (REST LIST))) ; cons додає наш атом до результуючого списку 
+          (APPEND (LINEARIZE (FIRST LIST)) (LINEARIZE (REST LIST)))))) ; append об'єднує два списки
+
+(print "Linearize for (1 (2 3) (4 (5 6) 7)):")
+(PRINT (LINEARIZE '(1 (2 3) (4 (5 6) 7))))
+
+
+; рахує кількість підсписків
+(DEFUN COUNT-SUBLISTS (LIST)
+  (let ((count 0))
+    (dolist (element LIST) ; цикл по списку, element це змінна ітерування 
+      (if (listp element) ; listp перевіряє чи є елемент списком 
+          (setq count (+ count 1 (COUNT-SUBLISTS element)))))
+    count))
+
+(print "Sublist count (1 (2 3) (4 (5 6) 7)):")
+(print (COUNT-SUBLISTS '(1 (2 3) (4 (5 6) 7))))
+
+
+
+; отримує значення за заданими i j 
+(defun MATR_GET (matrix row column)
+  (if (and (<= row (1- (length matrix)))
+           (<= column (1- (length (first matrix))))) ; nth - дає n-ий елемент зі списку
+      (nth column (nth row matrix)) ; отримуємо row-ий рядок матриці і column стовпець
+      (error "Invalid indices for the matrix")))
+
+(print "Get value on 0 1 position:")
+(print (MATR_GET '((1 2 3)
+                   (4 5 6)
+                   (7 8 9)) 0 1))
+
+ 
+
+; виводить матрицю 
+(defun PMATR (matrix i j)
+  (loop for row below i do
+        (loop for col below j do
+              (format t "~a " (nth col (nth row matrix))))
+        (format t "~%"))
+  matrix)
+
+
+
+; змінює елемент на задане значення на позиції i j 
+(defun MATR_CHANGE (matrix i j value)
+  (if (< i (length matrix))
+      (if (< j (length (nth i matrix)))
+          (setf (nth j (nth i matrix)) value) ; Змінюємо значення елемента
+          (error "Недійсний індекс j"))
+      (error "Недійсний індекс i"))
+  matrix) ; Повертаємо змінену матрицю
+
+
+(print "Change value on i j position:")
+(defparameter *my-matrix* '((1 2 3) (4 5 6) (7 8 9)))
+(FORMAT T "~%Original matrix:~%")
+(PMATR *my-matrix* 3 3)
+
+(setf *my-matrix* (MATR_CHANGE *my-matrix* 1 2 99)) ; Змінюємо елемент у рядку 1, стовпці 2 на 99
+
+(FORMAT T "~%Modified matrix:~%")
+(PMATR *my-matrix* 3 3)
+
+
+
+
+; генерує нульову матрицю 
+(DEFUN GENMATR0 (i j)
+  (LOOP FOR row FROM 1 TO i
+        COLLECT (LOOP FOR col FROM 1 TO j ; collect збирає значення у список
+                     COLLECT 0)))
+(FORMAT T "~%0 matrix:~%")
+(PMATR (GENMATR0 3 4) 3 4)
+
+
