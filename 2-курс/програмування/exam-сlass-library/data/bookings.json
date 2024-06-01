@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "date": "01.01.2021",
+      "id": "1",
+      "author": "Jack London",
+      "title": "Martin Eden"
+    },
+    {
+      "date": "01.02.2021",
+      "id": "2",
+      "author": "Mykola Hohol",
+      "title": "Dead souls"
+    },
+    {
+      "date": "01.03.2021",
+      "id": "3",
+      "author": "Francis Fitzgerald",
+      "title": "Great Gatsby"
+    }
+  ]
+}

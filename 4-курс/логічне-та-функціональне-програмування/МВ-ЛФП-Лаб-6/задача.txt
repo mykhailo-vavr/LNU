@@ -1,0 +1,41 @@
+; Define PUT function
+; Get Key from symbol and assign it new value by SETF(setf cann assign any object)
+(defun PUT (SYMBOL KEY VALUE) (SETF (GET SYMBOL KEY) VALUE))
+
+; Define Me object
+(PUT 'Me 'name 'Mykhailo)
+(PUT 'Me 'surname 'Vavrykoych)
+(PUT 'Me 'patronymic 'Igorovych)
+(PUT 'Me 'gender 'male)
+(PUT 'Me 'dateOfBirth '20/11/2002)
+(put 'Me 'location (cons 'Ukraine (cons 'Ternopil '(Prosvity 15))))
+(PUT 'Me 'study '(LNU AMI AMI-43))
+(PUT 'Me 'job '( FullStack Software Developer))
+
+; Define selectors
+(defun name(symbol)
+	(get symbol 'name))
+(defun surname(symbol)
+	(get symbol 'surname))
+(defun patronymic(symbol)
+	(get symbol 'patronymic))
+(defun gender(symbol)
+	(get symbol 'gender))
+(defun dateOfBirth(symbol)
+	(get symbol 'dateOfBirth))
+(defun location(symbol)
+	(get symbol 'location))
+(defun study(symbol)
+	(get symbol 'study))
+(defun job(symbol)
+	(get symbol 'job))
+	
+;Print result
+(print (name 'Me))
+(print (surname 'Me))
+(print (patronymic 'Me))
+(print (gender 'Me))
+(print (dateOfBirth 'Me))
+(print (location 'Me))
+(print (study 'Me))
+(print (job 'Me))
